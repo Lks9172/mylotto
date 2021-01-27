@@ -28,7 +28,7 @@ SECRET_KEY = '=*!)vhddh!a3mjq&h96^khs5ja2@kc2ni_n_k0ig-t3v&v61nf'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'ekdan9172.pythonanywhere.com'
+    '*'
 ]
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mylotto',
     'bootstrap4',
+    'polls',
 ]
 
 MIDDLEWARE = [
@@ -129,8 +130,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #    BASE_DIR / "static",
 #]
 
-LOGIN_REDIRECT_URL = reverse_lazy('home')
-LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
+LOGIN_REDIRECT_URL = reverse_lazy('polls:index')
+LOGOUT_REDIRECT_URL = reverse_lazy('polls:index')
 
 # url상의 경로
 MEDIA_URL = '/media/'

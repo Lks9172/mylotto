@@ -16,14 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from mylotto.views import index, post, detail
+from polls.views import vote, DetailView, IndexView, ResultsView
+
+app_name = 'polls'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('lotto/', index, name='lotto'),
-    path('', index, name='index'),
-    path('lotto/new/', post, name='new_lotto'),
-    path('lotto/detail/<int:pk>', detail, name='detail'),
-    path('polls/',include('polls.urls')),
-
+    path('', IndexView.as_view(), name='index'),
+    path('<int:pk>', DetailView.as_view(), name='detail'),
+    path('results/<int:pk>', ResultsView.as_view(), name='results'),
+    path('vote/<int:pk>', vote, name='vote'),
 ]
