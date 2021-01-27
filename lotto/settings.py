@@ -9,21 +9,28 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os
+import os, environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.urls import reverse_lazy
 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=*!)vhddh!a3mjq&h96^khs5ja2@kc2ni_n_k0ig-t3v&v61nf'
-
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
